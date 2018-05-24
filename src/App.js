@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const BasicExample = () => (
@@ -26,7 +25,6 @@ const BasicExample = () => (
 );
 class User extends Component {
   render() {
-    console.log(this.props.match);
     return (
       <div>
         <h2>USER ID:{this.props.match.params.id}</h2>
