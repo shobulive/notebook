@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AppLandingHeader from '../../Components/Common/Header/AppLandingHeader';
 import background from '../../Assets/background.jpg';
-import Footer from '../../Components/Common/Footer';
 import { Redirect } from 'react-router-dom';
 class Login extends Component {
   state = {

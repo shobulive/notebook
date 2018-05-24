@@ -161,7 +161,74 @@ hr {
   background-color: white; /* Green */
   color: #FFA726;
 }
-.footer{
-  height: 65px;
+.in-app-header-container{
+  height: 54px;
   width: 100%;
+  padding: 6px;
+  padding-right: 18px;
+  background-color: #FFA726;
+  display: inline-block;
+  justify-content: space-between;
+}
+.in-app-logo{
+  height: 42px;
+  width: 42px;
+}
+.in-app-logo-container{
+  float:left;
+}
+.search-input-container{
+  width: 40%;
+  height: 35px;
+  padding-left:40px;
+}
+.search-input{
+  width: 100%;
+  height: 35px;
+}
+.search-icon{
+  opacity:0.6
+}
+.header-icons{
+  float: right;
+}
+.divider-horizontal{
+  width: 1px; height: 20px; display: inline-block;
+}
+.header-icon-seperation{
+  padding:10px
+}
+.float-left
+{
+  float: left;
+}
+.float-right
+{
+  float: right;
+}
+.float-center{
+  margin: 0 auto
+}
+.avatar{
+  height: 30px;
+  widows: 30px;
+  border-radius: 15px;
+  margin-right:9px;
+  margin-top: 5px;
+}
+.text-icon{
+font-size: 12px;
+color: white;
+vertical-align: -webkit-baseline-middle;
+}
+.major-padding{
+padding: 12px;
+}
+.minor-padding{
+padding: 8px
+}
+.icon-nav{
+  padding-top:10px;
+  height: 30px;
+  width: 30px;
 }

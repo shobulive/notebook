@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from './Pages/Login';
+import InAppHeader from './Components/Common/Header/InAppHeader';
 class Routes extends Component {
   render() {
     return (
@@ -18,6 +19,7 @@ class Routes extends Component {
 }
 const Home = () => (
   <div>
+    <InAppHeader />
     <h2>Home</h2>
   </div>
 );
