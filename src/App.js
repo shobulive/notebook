@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import AppLandingHeader from './Components/Common/Header/AppLandingHeader';
+import background from './Assets/background.jpg';
 const Routes = () => (
   <Router>
     <div>
@@ -10,11 +12,14 @@ const Routes = () => (
     </div>
   </Router>
 );
-class User extends Component {
+class Home extends Component {
   render() {
     return (
       <div>
-        <h2>USER ID:{this.props.match.params.id}</h2>
+        <AppLandingHeader />
+        <div class="background">
+          <img src={background} class="left-image" />
+        </div>
       </div>
     );
   }
@@ -24,9 +29,9 @@ const Post = ({ match }) => (
     <h2>POST ID:{match.params.id}</h2>
   </div>
 );
-const Home = () => (
+const User = ({ match }) => (
   <div>
-    <h2>Home</h2>
+    <h2>User ID:{match.params.id}</h2>
   </div>
 );
 
