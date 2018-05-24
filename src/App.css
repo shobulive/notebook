@@ -1,31 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 .background
 {
   width: 100%;
@@ -109,4 +81,87 @@ hr {
 .btn-signin:hover {
   background-color: white; /* Green */
   color: #FFA726;
+}
+
+.app-landing-container {
+  width: 100%;
+  height: 91px;
+  padding:13px;
+  flex-grow: inherit;
+  background-color: #FFA726
+}
+.landing-logo-container{
+  float: left;
+}
+.landing-logo{
+  height: 65px;
+  width: 84px;
+}
+.login-form-container{
+  float: right;
+  height: 65px;
+  justify-content: center;
+}
+.login-form-text{
+  font-size: 12px;
+  color: white;
+  letter-spacing: 4px;
+  font-weight: 100;
+}
+.text-input{
+  height: 25px;
+  width:200px;
+}
+.logo-text{
+  font-size: 36px;
+  vertical-align: -webkit-baseline-middle;
+  height:65px;
+  color: white;
+  font-weight: 100;
+  margin-left: 13px;
+  letter-spacing: 8px;
+}
+.text-input:focus{
+  border-color:white;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+}
+.form-internal-left{
+  float: left;
+}
+.form-internal-right{
+  float: right;
+  padding-top: 25px;
+}
+.spacing{
+  padding:5px
+}
+.btn-login{
+  background-color: #FFA726;
+  border:  1px solid white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.btn-login:focus{
+  border-color:white;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+}
+.btn-login:active{
+  border-color:white;
+  background-color: white; /* Green */
+  color: #FFA726;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+}
+.btn-login:hover {
+  background-color: white; /* Green */
+  color: #FFA726;
+}
+.footer{
+  height: 65px;
+  width: 100%;
 }
