@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-const BasicExample = () => (
+const Routes = () => (
   <Router>
     <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/user/about">About</Link>
-        </li>
-        <li>
-          <Link to="/post/topics">Topics</Link>
-        </li>
-      </ul>
-
-      <hr />
       <Route exact path="/" component={Home} />
       <Route path="/user/:id" component={User} />
       <Route path="/post/:id" component={Post} />
@@ -43,4 +30,4 @@ const Home = () => (
   </div>
 );
 
-export default BasicExample;
+export default Routes;
