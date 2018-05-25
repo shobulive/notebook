@@ -216,6 +216,19 @@ hr {
   margin-right:9px;
   margin-top: 5px;
 }
+.avatar-without-margin{
+  height: 20px;
+  widows: 20px;
+  border-radius: 10px;
+}
+.avatar-post{
+  height: 50px;
+  widows: 50px;
+  border-radius: 25px;
+}
+textarea {
+  resize: none;
+}
 .text-icon{
 font-size: 12px;
 color: white;
@@ -225,10 +238,34 @@ vertical-align: -webkit-baseline-middle;
 padding: 12px;
 }
 .minor-padding{
-padding: 8px
+padding: 8px 16px 8px  16px
 }
 .icon-nav{
   padding-top:10px;
   height: 30px;
   width: 30px;
+}
+.flex-self{
+  color: white;
+  width:100px;
+}
+.feed-margin{
+  margin-top:20px
+}
+.text-vertical-align{
+  vertical-align: -webkit-baseline-middle
+}
+.time-stamp{
+  color:#ccc;
+  font-size: 10px;
+}
+.button-border{
+ border:  1px solid #ccc;
+ background-color: #fff
+}
+.comments{
+  background: rgba(255, 167, 38, 0.1)
+}
+.remove-bottom-padding{
+  padding-bottom: 0px
 }

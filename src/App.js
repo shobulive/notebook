@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './Pages/Login';
 import InAppHeader from './Components/Common/Header/InAppHeader';
+import { PostField } from './Components/Common/PostField';
+import { dummyPostData } from './temp/dummyPosts';
+import { FeedContent } from './Components/Common/FeedContent';
+
 class Routes extends Component {
   render() {
     return (
@@ -17,12 +21,19 @@ class Routes extends Component {
     );
   }
 }
-const Home = () => (
-  <div>
-    <InAppHeader />
-    <h2>Home</h2>
-  </div>
-);
+const Home = () => {
+  return (
+    <div>
+      <InAppHeader />
+      <div class="container">
+        <PostField />
+        {Object.values(dummyPostData).map((content, index) => (
+          <FeedContent content={content} key={index} />
+        ))}
+      </div>
+    </div>
+  );
+};
 const Post = ({ match }) => (
   <div>
     <h2>POST ID:{match.params.id}</h2>

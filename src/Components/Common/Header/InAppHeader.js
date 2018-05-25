@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../../../Assets/logo.png';
 import faker from 'faker/locale/en';
+import { Link } from 'react-router-dom';
 export default class InAppHeader extends Component {
   render() {
     return (
@@ -9,8 +10,10 @@ export default class InAppHeader extends Component {
           <img src={logo} class="in-app-logo" alt="InAppLogo" />
         </div>
         <div class="header-icons">
-          <img src={faker.image.avatar()} class="avatar" />
-          <span class="text-icon major-padding">{faker.name.findName()}</span>
+          <Link to="user/currentUserID">
+            <img src={faker.image.avatar()} class="avatar" alt="avatar" />
+            <span class="text-icon major-padding">{faker.name.findName()}</span>
+          </Link>
           <span class="text-icon major-padding">Home</span>
           <div class="float-right row">
             <div class="icon-nav col-lg-2 col-md-2 col-sm-2">
