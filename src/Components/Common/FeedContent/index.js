@@ -1,7 +1,10 @@
 import React from 'react';
 import faker from 'faker';
 import { Link } from 'react-router-dom';
+import { Comment } from './Comment';
+import { InputBox } from './InputBox';
 export class FeedContent extends React.Component {
+  state = { showReplies: false };
   _renderPostHeader() {
     return (
       <div class="row">
@@ -43,27 +46,80 @@ export class FeedContent extends React.Component {
       </div>
     );
   }
+  _renderInputBox(type) {}
   _renderComments() {
     return (
       <div class="row comments">
-        <div class="major-padding input-group">
-          <div class="input-group-addon">
-            <img
-              src={faker.image.avatar()}
-              class="avatar-without-margin"
-              alt="avatar"
+        <InputBox type="comment" />
+        <div class="w3-container">
+          {Object.values(this.props.content.comments).map((comment, i) => (
+            <Comment
+              key={i}
+              type="comment"
+              content={comment.content}
+              authorName={comment.authorName}
+              authorID={comment.authorID}
+              replies={Object.values(comment.replies)}
+              renderReplies={(reply, i) => (
+                <Comment
+                  key={i}
+                  type="reply"
+                  content={reply.content}
+                  authorName={reply.authorName}
+                  authorID={reply.authorID}
+                  replies={[]}
+                />
+              )}
             />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  _renderComment(index, type, post, authorName, authorID, replies) {
+    return (
+      <div class="row minor-padding" key={index}>
+        <div class="col-lg-1 col-md-1 col-sm-1">
+          <img
+            src={faker.image.avatar()}
+            class="avatar-without-margin-big"
+            alt="avatar"
+          />
+        </div>
+        <div class="col-lg-11 col-md-11 col-sm-11">
+          <div class="w3-card comment-card  minor-padding">
+            <Link to={`/user/${authorID}`}>{authorName}</Link> {post}
           </div>
-          <input class="form-control" />
-          <span class="input-group-addon">
-            <i class="glyphicon glyphicon-camera" />
-          </span>
+          <div class="row">
+            <button class="reply-btn">Like</button>
+            .
+            <button class="reply-btn">Reply</button>
+          </div>
+          {this.state.showReplies ? (
+            replies.map((reply, i) =>
+              this._renderComment(
+                i,
+                'reply',
+                reply.content,
+                reply.authorName,
+                reply.authorID,
+                []
+              )
+            )
+          ) : (
+            <a onClick={() => this.setState({ showReplies: true })}>
+              {replies[0].authorName}{' '}
+              {(replies[1] ? ' and ' + replies[1].authorName : '') +
+                ' replied to this comment'}
+            </a>
+          )}
+          {type === 'comment' &&
+            this.state.showReplies && <InputBox type={type} />}
         </div>
       </div>
     );
   }
   render() {
-    console.log(this.props.content);
     return (
       <div class="w3-card major-padding remove-bottom-padding feed-margin">
         {this._renderPostHeader()}

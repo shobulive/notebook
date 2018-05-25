@@ -221,6 +221,11 @@ hr {
   widows: 20px;
   border-radius: 10px;
 }
+.avatar-without-margin-big{
+  height: 30px;
+  widows: 30px;
+  border-radius: 15px;
+}
 .avatar-post{
   height: 50px;
   widows: 50px;
@@ -268,4 +273,30 @@ padding: 8px 16px 8px  16px
 }
 .remove-bottom-padding{
   padding-bottom: 0px
+}
+.comment-card{
+  background-color: white;
+}
+.reply-btn{
+  background-color: transparent;
+  padding: 5px 10px 5px 10px;
+  border: 0px;
+  margin-top: 5px;
+}
+.reply-btn:focus{
+  border-color:white;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+}
+.reply-btn:active{
+  background-color: transparent; /* Green */
+  color: #FFA726;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px white;
+}
+.reply-btn:hover {
+  background-color: transparent; /* Green */
+  color: #FFA726;
 }
