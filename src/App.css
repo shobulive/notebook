@@ -300,3 +300,54 @@ padding: 8px 16px 8px  16px
   background-color: transparent; /* Green */
   color: #FFA726;
 }
+.cover-photo{
+  width: 100%;
+  height: 313px;
+  position: absolute;
+  left:0px;
+  z-index: 1;
+}
+.avatar-profile{
+  width: 200px;
+  height: 200px;
+}
+.avatar-profile-container{
+  width: 220px;
+  height: 220px;
+  padding:10px;
+  position: absolute;
+  left:35px;
+  z-index: 3;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  top: 130px;
+}
+.app-bar{
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+  border: 1px solid #eee
+}
+.content{
+  position: absolute;
+  float: left;
+  top: 313px;
+  width: 100%;
+  left: 0px;
+  z-index: 2;
+}
+.app-bar-button{
+  width: 100px;
+  border-left: 1px solid #eee
+}
+.user-name{
+  font-size: 24px;
+  font-weight: 100;
+  letter-spacing: 5px;
+  position: absolute;
+  left: 270px;
+  top: 265px;
+  color: #fff;
+  z-index: 4;
+  text-shadow: 1px 1px 2px black;
+}

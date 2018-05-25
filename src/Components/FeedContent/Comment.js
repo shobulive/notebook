@@ -5,7 +5,8 @@ import { InputBox } from './InputBox';
 export class Comment extends React.Component {
   state = { showReplies: false };
   render() {
-    const { replies, content, authorName, authorID, type } = this.props;
+    const { type } = this.props;
+    const { replies, content, authorName, authorID } = this.props.content;
     return (
       <div class="row minor-padding">
         <div class="col-lg-1 col-md-1 col-sm-1">

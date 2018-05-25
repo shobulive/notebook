@@ -10,11 +10,13 @@ export default class InAppHeader extends Component {
           <img src={logo} class="in-app-logo" alt="InAppLogo" />
         </div>
         <div class="header-icons">
-          <Link to="user/currentUserID">
+          <Link to="/user/currentUserID">
             <img src={faker.image.avatar()} class="avatar" alt="avatar" />
             <span class="text-icon major-padding">{faker.name.findName()}</span>
           </Link>
-          <span class="text-icon major-padding">Home</span>
+          <Link to="/home">
+            <span class="text-icon major-padding">Home</span>
+          </Link>
           <div class="float-right row">
             <div class="icon-nav col-lg-2 col-md-2 col-sm-2">
               <span class="icon-nav">

@@ -39,10 +39,12 @@ export const dummyPostData = {
     authorID: 0,
     authorName: 'Harry Potter',
     content: "What's up? How is it going?",
+    timestamp: 'Fri May 25 2018 11:36:47 GMT+0530 (IST)',
     comments: {
       1: {
         authorID: 0,
         authorName: 'Harry Potter',
+        timestamp: 'Fri May 25 2018 11:36:47 GMT+0530 (IST)',
         content: 'Nm. Just kicking some boots',
         replies: {
           1: {
@@ -56,6 +58,7 @@ export const dummyPostData = {
       2: {
         authorID: 0,
         authorName: 'Harry Potter',
+        timestamp: 'Fri May 25 2018 11:36:47 GMT+0530 (IST)',
         content: 'Nm. Just kicking some boots',
         replies: {
           1: {
