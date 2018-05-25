@@ -30,7 +30,7 @@ export class FeedContent extends React.Component {
   _renderPostContent() {
     return (
       <div class="row minor-padding">
-        <div>{this.props.content.post}</div>
+        <div>{this.props.content.content}</div>
       </div>
     );
   }
