@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './Pages/Login';
 import { Home } from './Pages/Home';
-import { User } from './Pages/Profile';
+import User from './Pages/Profile';
 
 class Routes extends Component {
   render() {

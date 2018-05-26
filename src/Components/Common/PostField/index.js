@@ -1,12 +1,16 @@
 import React from 'react';
-import faker from 'faker';
-export class PostField extends React.Component {
+import { connect } from 'react-redux';
+class PostField extends React.Component {
   render() {
     return (
       <div class="w3-card minor-padding">
         <div class="input-group">
           <div class="input-group-addon">
-            <img src={faker.image.avatar()} class="avatar-post" alt="avatar" />
+            <img
+              src={this.props.currentUser && this.props.currentUser.profilePic}
+              class="avatar-post"
+              alt="avatar"
+            />
           </div>
           <textarea
             class="form-control"
@@ -21,3 +25,15 @@ export class PostField extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log('[[MAP STATE TO PROPS PostFild]]', state);
+  return {
+    currentUser: state.auth.currentUser
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    // userSignOut: () => dispatch(userSignOut())
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(PostField);

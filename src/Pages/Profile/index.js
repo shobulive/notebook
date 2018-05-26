@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
-import faker from 'faker/locale/en';
 import InAppHeader from '../../Components/Common/Header/InAppHeader';
-import { PostField } from '../../Components/Common/PostField';
+import PostField from '../../Components/Common/PostField';
 import { FeedContent } from '../../Components/FeedContent';
-import { dummyPostData } from '../../temp/dummyPosts';
-export class User extends Component {
-  // <h2>User ID:{this.props.match.params.id}</h2>
+import { connect } from 'react-redux';
+import {
+  fetchUserFeedListenerOn,
+  fetchUserFeedListenerOff,
+  fetchUserDetails
+} from '../../Actions/FetchUserData';
+class User extends Component {
+  userData;
+  componentWillUnmount() {
+    if (this.props.uID)
+      this.props.fetchUserFeedListenerOff(this.props.match.params.id);
+  }
   render() {
+    // console.log(this.userData);
+
+    const ownProfile = this.props.uID === this.props.match.params.id;
     return (
       <div>
-        <InAppHeader redirect={() => this.props.history.push('/')} />
+        <InAppHeader
+          notSignedAction={() => this.props.history.push('/')}
+          redirect={() => this.props.history.push('/')}
+        />
         <div class="container">
           <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-1" />
@@ -17,16 +31,32 @@ export class User extends Component {
               <div class="float-left avatar-profile-container">
                 <img
                   alt="profile-pic"
-                  src={faker.image.avatar()}
+                  src={
+                    this.props.currentUser && this.props.currentUser.profilePic
+                    // : this.props.userData && this.props.userData.profilePic
+                  }
                   class="avatar-profile"
                 />
               </div>
               <img
                 alt="cover"
-                src={faker.image.transport()}
+                src={
+                  ownProfile
+                    ? this.props.currentUser &&
+                      this.props.currentUser.coverPhoto
+                    : this.props.userData && this.props.userData.coverPhoto
+                }
                 class="cover-photo"
               />
-              <span class="user-name">{faker.name.findName()}</span>
+              <span class="user-name">
+                {ownProfile
+                  ? this.props.currentUser &&
+                    this.props.currentUser.fName +
+                      ' ' +
+                      this.props.currentUser.lName
+                  : this.props.userData &&
+                    this.props.userData.fName + ' ' + this.props.userData.lName}
+              </span>
               <div class="content">
                 <div class="w3-card app-bar">
                   <div class="float-right">
@@ -52,9 +82,10 @@ export class User extends Component {
                 </div>
                 <div class="feed-margin">
                   <PostField />
-                  {Object.values(dummyPostData).map(content => (
-                    <FeedContent content={content} />
-                  ))}
+                  {this.props.feeds &&
+                    this.props.feed.map((content, i) => (
+                      <FeedContent key={i} content={content} />
+                    ))}
                 </div>
               </div>
             </div>
@@ -65,3 +96,23 @@ export class User extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log('[[MAP STATE TO PROPS Profile]]', state);
+  return {
+    uID: state.auth.uID,
+    currentUser: state.auth.currentUser,
+    feed: state.user.userFeed
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchUserFeedListenerOn: uID => dispatch(fetchUserFeedListenerOn(uID)),
+    fetchUserFeedListenerOff: uID => dispatch(fetchUserFeedListenerOff(uID)),
+    fetchUserDetails: uID => dispatch(fetchUserDetails(uID))
+    // userSignIn: (loginEmail, loginPassword) =>
+    //   dispatch(userSignIn(loginEmail, loginPassword)),
+    // userSignUp: (fName, lName, email, pass, cPass, gender, dob) =>
+    //   dispatch(userSignUp(fName, lName, email, pass, cPass, gender, dob))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(User);

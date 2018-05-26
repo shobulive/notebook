@@ -19,7 +19,7 @@ class Login extends Component {
     singInDOB: ''
   };
   componentWillReceiveProps(nextProps) {
-    if (nextProps.uID) {
+    if (nextProps.isLoggedIn) {
       this.props.history.push('/home');
     }
   }
@@ -219,7 +219,6 @@ const mapStateToProps = state => {
   console.log('[[MAP STATE TO PROPS LOGIN]]', state);
   return {
     uID: state.auth.uID,
-    currentUser: state.auth.currentUser,
     message: state.auth.message,
     isLoggedIn: state.auth.isLoggedIn
   };

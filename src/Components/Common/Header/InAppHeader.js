@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import logo from '../../../Assets/logo.png';
-import faker from 'faker/locale/en';
 import { Link } from 'react-router-dom';
 import { userSignOut } from '../../../Actions/auth';
 import { connect } from 'react-redux';
 class InAppHeader extends Component {
   render() {
+    if (!this.props.uID) {
+      this.props.notSignedAction();
+    }
     return (
       <div class="in-app-header-container">
         <div class="in-app-logo-container">
           <img src={logo} class="in-app-logo" alt="InAppLogo" />
         </div>
         <div class="header-icons">
-          <Link to="/user/currentUserID">
-            <img src={faker.image.avatar()} class="avatar" alt="avatar" />
-            <span class="text-icon major-padding">{faker.name.findName()}</span>
+          <Link to={`/user/${this.props.uID}`}>
+            <img
+              src={this.props.currentUser && this.props.currentUser.profilePic}
+              class="avatar"
+              alt="avatar"
+            />
+            <span class="text-icon major-padding">
+              {this.props.currentUser &&
+                this.props.currentUser.fName +
+                  ' ' +
+                  this.props.currentUser.lName}
+            </span>
           </Link>
           <Link to="/home">
             <span class="text-icon major-padding">Home</span>
@@ -66,9 +77,16 @@ class InAppHeader extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log('[[MAP STATE TO PROPS Header]]', state);
+  return {
+    currentUser: state.auth.currentUser,
+    uID: state.auth.uID
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     userSignOut: () => dispatch(userSignOut())
   };
 };
-export default connect(null, mapDispatchToProps)(InAppHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(InAppHeader);
