@@ -1,19 +1,28 @@
 import React from 'react';
 import faker from 'faker';
 import { Link } from 'react-router-dom';
-import { Comment } from './Comment';
-import { InputBox } from './InputBox';
+import Comment from './Comment';
+import { connect } from 'react-redux';
+import InputBox from './InputBox';
 import { _returnTimeAgoStamp } from './TimeUtil';
-export class FeedContent extends React.Component {
+import { postComment } from '../../Actions/postData';
+class FeedContent extends React.Component {
   state = { showReplies: false };
   _renderPostHeader() {
     const { timeNum, timeUnit } = _returnTimeAgoStamp(
       this.props.content.timestamp
     );
+    const ownPost = this.props.uID === this.props.content.authorID;
     return (
       <div class="row">
         <div class="col-lg-1 col-md-1 col-sm-1">
-          <img src={faker.image.avatar()} class="avatar-post" alt="avatar" />
+          <img
+            src={
+              ownPost ? this.props.currentUser.profilePic : faker.image.avatar()
+            }
+            class="avatar-post"
+            alt="avatar"
+          />
         </div>
         <div class="col-lg-10 col-md-10 col-sm-10">
           <Link
@@ -52,25 +61,56 @@ export class FeedContent extends React.Component {
       </div>
     );
   }
+  _postComment() {
+    if (this.state.commentText.length > 0) {
+      this.props.postComment(
+        this.props.content.key,
+        this.props.content.authorID,
+        this.props.content.authorName,
+        this.state.commentText
+      );
+      this.setState({ commentText: '' });
+    }
+  }
   _renderComments() {
+    const values = this.props.content.comments
+      ? Object.values(this.props.content.comments).slice()
+      : [];
+    const keys = this.props.content.comments
+      ? Object.keys(this.props.content.comments).slice()
+      : [];
+    values.map((value, i) => (value['key'] = keys[i]));
     return (
       <div class="row comments">
-        <InputBox type="comment" />
+        <InputBox
+          value={this.state.commentText}
+          type="comment"
+          onChange={event => this.setState({ commentText: event.target.value })}
+          sendPost={() => this._postComment()}
+        />
         <div class="w3-container">
-          {Object.values(this.props.content.comments).map((comment, i) => (
-            <Comment
-              key={i}
-              type="comment"
-              content={{ ...comment, replies: Object.values(comment.replies) }}
-              renderReplies={(reply, i) => (
-                <Comment
-                  key={i}
-                  type="reply"
-                  content={{ ...reply, replies: [] }}
-                />
-              )}
-            />
-          ))}
+          {values
+            .sort(
+              (f1, f2) => parseFloat(f2.timestamp) - parseFloat(f1.timestamp)
+            )
+            .map((comment, i) => (
+              <Comment
+                key={i}
+                type="comment"
+                content={{
+                  ...comment,
+                  replies: comment.replies ? Object.values(comment.replies) : []
+                }}
+                postID={this.props.content.key}
+                renderReplies={(reply, i) => (
+                  <Comment
+                    key={i}
+                    type="reply"
+                    content={{ ...reply, replies: [] }}
+                  />
+                )}
+              />
+            ))}
         </div>
       </div>
     );
@@ -86,3 +126,18 @@ export class FeedContent extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log('[[MAP STATE TO PROPS PostFild]]', state);
+  return {
+    currentUser: state.auth.currentUser,
+    uID: state.auth.uID
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    postComment: (key, authorID, authorName, commentText) =>
+      dispatch(postComment(key, authorID, authorName, commentText))
+    // fetchAllFeedListenerOff: () => dispatch(fetchAllFeedListenerOff())
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FeedContent);

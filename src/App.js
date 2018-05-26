@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './Pages/Login';
-import { Home } from './Pages/Home';
+import Home from './Pages/Home';
 import User from './Pages/Profile';
 
 class Routes extends Component {

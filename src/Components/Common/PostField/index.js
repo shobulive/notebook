@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { postContent } from '../../../Actions/postData';
 class PostField extends React.Component {
+  state = {
+    post: ''
+  };
   render() {
     return (
       <div class="w3-card minor-padding">
@@ -15,10 +19,26 @@ class PostField extends React.Component {
           <textarea
             class="form-control"
             rows="4"
+            value={this.state.post}
             placeholder="What's kicking?..."
+            onChange={event => this.setState({ post: event.target.value })}
           />
         </div>
-        <button class="btn-login w3-round-xxlarge minor-padding feed-margin flex-self">
+        <button
+          onClick={() => {
+            if (this.state.post.length > 0) {
+              this.props.postContent(
+                this.props.uID,
+                this.props.currentUser.fName +
+                  ' ' +
+                  this.props.currentUser.lName,
+                this.state.post
+              );
+              this.setState({ post: '' });
+            }
+          }}
+          class="btn-login w3-round-xxlarge minor-padding feed-margin flex-self"
+        >
           Post
         </button>
       </div>
@@ -28,12 +48,14 @@ class PostField extends React.Component {
 const mapStateToProps = state => {
   console.log('[[MAP STATE TO PROPS PostFild]]', state);
   return {
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
+    uID: state.auth.uID
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    // userSignOut: () => dispatch(userSignOut())
+    postContent: (aID, aName, conent) =>
+      dispatch(postContent(aID, aName, conent))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PostField);

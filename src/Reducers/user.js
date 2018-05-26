@@ -17,9 +17,14 @@ export default function(state = initialState, action) {
         userDetails: action.payload
       };
     case FETCH_USER_FEED:
+      const values = action.payload
+        ? Object.values(action.payload).slice()
+        : [];
+      const keys = action.payload ? Object.keys(action.payload).slice() : [];
+      values.map((value, i) => (value['key'] = keys[i]));
       return {
         ...state,
-        userFeed: action.payload ? Object.values(action.payload) : []
+        userFeed: values
       };
     case CLEAR_USER_FEED:
       return initialState;

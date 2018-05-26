@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InAppHeader from '../../Components/Common/Header/InAppHeader';
 import PostField from '../../Components/Common/PostField';
-import { FeedContent } from '../../Components/FeedContent';
+import FeedContent from '../../Components/FeedContent';
 import { connect } from 'react-redux';
 import {
   fetchUserFeedListenerOn,
@@ -10,13 +10,14 @@ import {
 } from '../../Actions/FetchUserData';
 class User extends Component {
   userData;
-  componentWillUnmount() {
-    if (this.props.uID)
-      this.props.fetchUserFeedListenerOff(this.props.match.params.id);
+  componentWillMount() {
+    this.props.fetchUserFeedListenerOn(this.props.match.params.id);
   }
+  // componentWillUnmount() {
+  //   this.props.fetchUserFeedListenerOff(this.props.match.params.id);
+  // }
   render() {
     // console.log(this.userData);
-
     const ownProfile = this.props.uID === this.props.match.params.id;
     return (
       <div>
@@ -82,10 +83,15 @@ class User extends Component {
                 </div>
                 <div class="feed-margin">
                   <PostField />
-                  {this.props.feeds &&
-                    this.props.feed.map((content, i) => (
-                      <FeedContent key={i} content={content} />
-                    ))}
+                  {this.props.feed &&
+                    this.props.feed
+                      .sort(
+                        (f1, f2) =>
+                          parseFloat(f2.timestamp) - parseFloat(f1.timestamp)
+                      )
+                      .map((content, i) => (
+                        <FeedContent key={i} content={content} />
+                      ))}
                 </div>
               </div>
             </div>

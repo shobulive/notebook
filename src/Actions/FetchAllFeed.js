@@ -7,13 +7,10 @@ export const fetchAllFeedListenerOn = () => {
     firebase
       .database()
       .ref(`feed`)
+      .orderByChild('timestamp')
       .on('value', snap => {
-        const feeds = Object.values(snap.val());
-        let finalFeed = {};
-        feeds.forEach(userFeed => {
-          finalFeed = { ...finalFeed, userFeed };
-        });
-        dispatch({ type: FETCH_ALL_FEED, payload: finalFeed });
+        const feeds = snap.val();
+        dispatch({ type: FETCH_ALL_FEED, payload: feeds });
       });
   };
 };

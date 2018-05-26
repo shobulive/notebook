@@ -19,7 +19,9 @@ export const fetchUserFeedListenerOn = uID => {
   return (dispatch, getState) => {
     firebase
       .database()
-      .ref(`feed/${uID}`)
+      .ref(`feed`)
+      .orderByChild('authorID')
+      .equalTo(uID)
       .on('value', details =>
         dispatch({ type: FETCH_USER_FEED, payload: details.val() })
       );
@@ -29,7 +31,7 @@ export const fetchUserFeedListenerOff = uID => {
   return (dispatch, getState) => {
     firebase
       .database()
-      .ref(`feed/${uID}`)
+      .ref(`feed`)
       .off('value');
     dispatch({ type: CLEAR_USER_FEED });
   };
