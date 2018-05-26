@@ -3,7 +3,7 @@ import faker from 'faker';
 import { Link } from 'react-router-dom';
 import { Comment } from './Comment';
 import { InputBox } from './InputBox';
-import { _returnTimeAgoStamp } from './timeUtil';
+import { _returnTimeAgoStamp } from './TimeUtil';
 export class FeedContent extends React.Component {
   state = { showReplies: false };
   _renderPostHeader() {

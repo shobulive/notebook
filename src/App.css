@@ -43,9 +43,7 @@ hr {
   border-color: rgba(0,0,0,0.2)
 } 
 .sign-up-card{
-  background-color: white;
-  padding-bottom: 10px;
-  margin-top:10%
+  padding: 10px;
 }
 .center-text{
   text-align: center;
@@ -55,14 +53,19 @@ hr {
   margin-top:5px
 }
 .white-text{
-  color:white
+  color:black
 }
 .btn-signin{
   background-color: #FFA726;
   border:  1px solid white;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-  height: 30px;
+  height: 50px;
+  width: 150px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #fff;
+  font-weight: bold;
 }
 .btn-signin:focus{
   border-color:white;
@@ -350,4 +353,22 @@ padding: 8px 16px 8px  16px
   color: #fff;
   z-index: 4;
   text-shadow: 1px 1px 2px black;
+}
+.margin-bottom{
+  margin-bottom: 20px
+}
+.margin-left{
+  margin-left: 20px
+}
+.input-login{
+  widows: 100%;
+  height: 40px;
+}
+.input-login-half{
+  widows: 50%;
+  height: 40px;
+}
+.terms-text{
+  font-size: 12px;
+  color: #ccc;
 }

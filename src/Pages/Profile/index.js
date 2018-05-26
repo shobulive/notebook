@@ -4,7 +4,7 @@ import InAppHeader from '../../Components/Common/Header/InAppHeader';
 import { PostField } from '../../Components/Common/PostField';
 import { FeedContent } from '../../Components/FeedContent';
 import { dummyPostData } from '../../temp/dummyPosts';
-export class User extends React.Component {
+export class User extends Component {
   // <h2>User ID:{this.props.match.params.id}</h2>
   render() {
     return (
