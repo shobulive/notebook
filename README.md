@@ -12,16 +12,16 @@ A minimal facebook clone with firebase plug and play backend and real-time user 
 
 **2. Clone this repo**
 
-> $ git clone https://github.com/shubham56/diamond-sweeper.git
+> $ git clone https://github.com/shubham56/notebook.git
 
 **4. Run the following command in your project directory**
 
-> $ cd diamond-sweeper
+> $ cd notebook
 
 > $ npm install
 
 **Note:**
-**Firebase auth is implemented however email validation is disable. Also, Image are generated using faker JS**
+**Firebase auth is implemented however email validation is disabled. Also, Images are generated using faker JS**
 
 **5. How to launch**
 
@@ -44,9 +44,15 @@ A minimal facebook clone with firebase plug and play backend and real-time user 
 [Create React App](https://github.com/facebook/create-react-app).
 
 [bootstrap](https://github.com/twbs/bootstrap)
+
 [React Router dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
+
 [Redux](https://github.com/reduxjs/redux)
+
 [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+
 [Firebase](https://github.com/firebase/)
+
 [Redux-Logger](https://github.com/evgenyrodionov/redux-logger)
+
 [FakerJS](https://github.com/marak/Faker.js/)
