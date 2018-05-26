@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from '../../../Assets/logo.png';
 import faker from 'faker/locale/en';
 import { Link } from 'react-router-dom';
-export default class InAppHeader extends Component {
+import { userSignOut } from '../../../Actions/auth';
+import { connect } from 'react-redux';
+class InAppHeader extends Component {
   render() {
     return (
       <div class="in-app-header-container">
@@ -28,21 +30,30 @@ export default class InAppHeader extends Component {
                 <i class="glyphicon glyphicon-send" />
               </span>
             </div>
-            <div class="icon-nav col-lg-3 col-md-3 col-sm-3">
+            <div class="icon-nav col-lg-2 col-md-2 col-sm-2">
               <span>
                 <i class="glyphicon glyphicon-globe" />
               </span>
             </div>
-            <div class="icon-nav col-lg-3 col-md-3 col-sm-3">
+            <div class="icon-nav col-lg-2 col-md-2 col-sm-2">
               <span>
                 <i class="glyphicon glyphicon-question-sign" />
               </span>
             </div>
-            <div class="icon-nav col-lg-2 col-md-2 col-sm-2">
+            <div class="icon-nav col-lg-1 col-md-1 col-sm-1">
               <span>
                 <i class="glyphicon glyphicon-triangle-bottom" />
               </span>
             </div>
+            <button
+              class="btn btn-default btn-login"
+              onClick={() => {
+                this.props.userSignOut();
+                this.props.redirect();
+              }}
+            >
+              Sign out
+            </button>
           </div>
         </div>
         <div class="input-group search-input-container">
@@ -55,3 +66,9 @@ export default class InAppHeader extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    userSignOut: () => dispatch(userSignOut())
+  };
+};
+export default connect(null, mapDispatchToProps)(InAppHeader);

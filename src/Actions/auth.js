@@ -1,16 +1,17 @@
 import {
   firebaseGetCurrentUser,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signOut
 } from '../FirebaseHelper/auth';
 import { firebase } from '../FirebaseHelper';
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
-export const RESET_AUTH_STATE = 'RESET_AUTH_STATE';
 export const PRINT_AUTH_MESSAGE = 'PRINT_AUTH_MESSAGE';
 export const CLEAR_AUTH_MESSAGE = 'CLEAR_AUTH_MESSAGE';
 export const SET_FIREBASE_UID = 'SET_FIREBASE_UID';
 export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS';
+export const SIGN_OUT = 'SIGN_OUT';
 
 export const checkForUserSession = () => {
   return async (dispatch, getState) => {
@@ -48,6 +49,14 @@ export const setFirebaseUID = uID => {
     dispatch({
       type: SET_FIREBASE_UID,
       payload: uID
+    });
+  };
+};
+export const userSignOut = () => {
+  return (dispatch, getState) => {
+    signOut();
+    dispatch({
+      type: SIGN_OUT
     });
   };
 };
@@ -102,10 +111,9 @@ export const userSignIn = (email, password) => {
     try {
       const currentUser = await signInWithEmailAndPassword(email, password);
       dispatch(clearAuthMessage());
-      dispatch(setFirebaseUID(currentUser.uid));
-      dispatch(setCurrentUser(currentUser.uid));
+      dispatch(setFirebaseUID(currentUser.user.uid));
+      dispatch(setCurrentUser(currentUser.user.uid));
     } catch (error) {
-      // console.log(error, password);
       dispatch(
         printAuthMessage({
           type: 'error',

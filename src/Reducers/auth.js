@@ -1,10 +1,10 @@
 import {
   SET_CURRENT_USER,
-  RESET_AUTH_STATE,
   PRINT_AUTH_MESSAGE,
   CLEAR_AUTH_MESSAGE,
   SET_FIREBASE_UID,
-  UPDATE_LOGIN_STATUS
+  UPDATE_LOGIN_STATUS,
+  SIGN_OUT
 } from '../Actions/auth';
 import faker from 'faker/locale/en';
 const initialState = {
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
         },
         isLoggedIn: true
       };
-    case RESET_AUTH_STATE:
+    case SIGN_OUT:
       return initialState;
     case PRINT_AUTH_MESSAGE:
       return {

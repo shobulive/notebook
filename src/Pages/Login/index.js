@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AppLandingHeader from '../../Components/Common/Header/AppLandingHeader';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   checkForUserSession,
@@ -9,7 +8,6 @@ import {
 } from '../../Actions/auth';
 class Login extends Component {
   state = {
-    redirect: false,
     loginEmail: '',
     loginPassword: '',
     signInGender: 'Male',
@@ -21,8 +19,8 @@ class Login extends Component {
     singInDOB: ''
   };
   componentWillReceiveProps(nextProps) {
-    if (nextProps.uID && !this.state.redirect) {
-      this.setState({ redirect: true });
+    if (nextProps.uID) {
+      this.props.history.push('/home');
     }
   }
   componentWillMount() {
@@ -51,9 +49,6 @@ class Login extends Component {
     );
   }
   render() {
-    if (this.state.redirect) {
-      return <Redirect to="/home" />;
-    }
     return (
       <div>
         {this.props.message && this._renderPgMessage()}

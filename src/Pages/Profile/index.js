@@ -9,7 +9,7 @@ export class User extends Component {
   render() {
     return (
       <div>
-        <InAppHeader />
+        <InAppHeader redirect={() => this.props.history.push('/')} />
         <div class="container">
           <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-1" />

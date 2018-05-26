@@ -7,7 +7,7 @@ export class Home extends React.Component {
   render() {
     return (
       <div>
-        <InAppHeader />
+        <InAppHeader redirect={() => this.props.history.push('/')} />
         <div class="container">
           <PostField />
           {Object.values(dummyPostData).map((content, index) => (
