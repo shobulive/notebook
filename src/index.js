@@ -5,14 +5,12 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import {
-  createStore,
-  //  combineReducers,
-  applyMiddleware
-} from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import auth from './Reducers/auth';
+import logger from 'redux-logger';
 const store = createStore(
-  // combineReducers(),
-  applyMiddleware(thunk)
+  combineReducers({ auth }),
+  applyMiddleware(thunk, logger)
 );
 ReactDOM.render(
   <Provider store={store}>

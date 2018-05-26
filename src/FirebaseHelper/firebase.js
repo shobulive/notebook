@@ -7,9 +7,7 @@ const config = {
   storageBucket: 'notebook-279fd.appspot.com',
   messagingSenderId: '112154712649'
 };
-if (!firebase.apps.length) {
-  firebase.initializeApp(config);
-}
+const fire = firebase.initializeApp(config);
 const auth = firebase.auth();
 
-export { auth };
+export { auth, fire as firebase };
