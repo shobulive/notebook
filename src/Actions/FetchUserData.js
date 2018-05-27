@@ -1,7 +1,8 @@
 import { firebase } from '../FirebaseHelper';
 
-export const FETCH_USER_BY_ID = 'FETCH_USER_BY_ID';
 export const FETCH_USER_FEED = 'FETCH_USER_FEED';
+export const FETCH_USER_BY_ID = 'FETCH_USER_BY_ID';
+export const CLEAR_USER_DETAILS = 'CLEAR_USER_DETAILS';
 export const CLEAR_USER_FEED = 'CLEAR_USER_FEED';
 
 export const fetchUserDetails = uID => {
@@ -13,6 +14,11 @@ export const fetchUserDetails = uID => {
       .then(details =>
         dispatch({ type: FETCH_USER_BY_ID, payload: details.val() })
       );
+  };
+};
+export const clearUserDetails = uID => {
+  return (dispatch, getState) => {
+    dispatch({ type: CLEAR_USER_DETAILS });
   };
 };
 export const fetchUserFeedListenerOn = uID => {

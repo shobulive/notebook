@@ -6,18 +6,21 @@ import { connect } from 'react-redux';
 import {
   fetchUserFeedListenerOn,
   fetchUserFeedListenerOff,
-  fetchUserDetails
+  fetchUserDetails,
+  clearUserDetails
 } from '../../Actions/FetchUserData';
 class User extends Component {
   userData;
   componentWillMount() {
     this.props.fetchUserFeedListenerOn(this.props.match.params.id);
+    if (this.props.uID !== this.props.match.params.id) {
+      this.props.fetchUserDetails(this.props.match.params.id);
+    }
   }
-  // componentWillUnmount() {
-  //   this.props.fetchUserFeedListenerOff(this.props.match.params.id);
-  // }
+  componentWillUnmount() {
+    if (this.props.userData) this.props.clearUserDetails();
+  }
   render() {
-    // console.log(this.userData);
     const ownProfile = this.props.uID === this.props.match.params.id;
     return (
       <div>
@@ -107,18 +110,16 @@ const mapStateToProps = state => {
   return {
     uID: state.auth.uID,
     currentUser: state.auth.currentUser,
-    feed: state.user.userFeed
+    feed: state.user.userFeed,
+    userData: state.user.userDetails
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     fetchUserFeedListenerOn: uID => dispatch(fetchUserFeedListenerOn(uID)),
     fetchUserFeedListenerOff: uID => dispatch(fetchUserFeedListenerOff(uID)),
-    fetchUserDetails: uID => dispatch(fetchUserDetails(uID))
-    // userSignIn: (loginEmail, loginPassword) =>
-    //   dispatch(userSignIn(loginEmail, loginPassword)),
-    // userSignUp: (fName, lName, email, pass, cPass, gender, dob) =>
-    //   dispatch(userSignUp(fName, lName, email, pass, cPass, gender, dob))
+    fetchUserDetails: uID => dispatch(fetchUserDetails(uID)),
+    clearUserDetails: () => dispatch(clearUserDetails())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(User);

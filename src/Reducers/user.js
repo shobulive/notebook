@@ -1,7 +1,8 @@
 import {
   FETCH_USER_BY_ID,
   FETCH_USER_FEED,
-  CLEAR_USER_FEED
+  CLEAR_USER_FEED,
+  CLEAR_USER_DETAILS
 } from '../Actions/FetchUserData';
 
 const initialState = {
@@ -16,6 +17,8 @@ export default function(state = initialState, action) {
         ...state,
         userDetails: action.payload
       };
+    case CLEAR_USER_DETAILS:
+      return initialState;
     case FETCH_USER_FEED:
       const values = action.payload
         ? Object.values(action.payload).slice()
