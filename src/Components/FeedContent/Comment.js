@@ -4,7 +4,7 @@ import faker from 'faker';
 import InputBox from './InputBox';
 import { connect } from 'react-redux';
 import { postReply } from '../../Actions/postData';
-import { _returnTimeAgoStamp } from './TimeUtil';
+import { _returnTimeAgoStamp } from './timeUtil';
 
 class Comment extends React.Component {
   state = { showReplies: false, replyText: '' };
