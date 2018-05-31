@@ -1,11 +1,11 @@
 import * as firebase from 'firebase';
 const config = {
-  apiKey: 'AIzaSyBzHnmYO3L8Tmf0je2e77ZFl8CK7-ishaQ',
-  authDomain: 'notebook-279fd.firebaseapp.com',
-  databaseURL: 'https://notebook-279fd.firebaseio.com',
-  projectId: 'notebook-279fd',
-  storageBucket: 'notebook-279fd.appspot.com',
-  messagingSenderId: '112154712649'
+  apiKey: 'MY_FIREBASE_API_KEY',
+  authDomain: 'MY_FIREBASE_AUTH_DOMAIN',
+  databaseURL: 'MY_FIREBASE_DB_URL',
+  projectId: 'MY_FIREBASE_PROJECT_ID',
+  storageBucket: 'MY_FIREBASE_STORAGE_BUCKET',
+  messagingSenderId: 'MY_FIREBASE_MESSANGING_SENDER_ID'
 };
 const fire = firebase.initializeApp(config);
 const auth = firebase.auth();

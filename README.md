@@ -14,20 +14,22 @@ A minimal facebook clone with firebase plug and play backend and real-time user 
 
 > $ git clone https://github.com/shubham56/notebook.git
 
-**4. Run the following command in your project directory**
+**3. Run the following command in your project directory**
 
 > $ cd notebook
 
 > $ npm install
 
-**Note:**
-**Firebase auth is implemented however email validation is disabled. Also, Images are generated using faker JS**
+**4. Add your firebase app credentials in ./src/FirebaseHelpers/Firebase under the name `config` variable**
 
 **5. How to launch**
 
 > $ npm run start
 
 > open http://localhost:3000/ or http://127.0.0.1:3000/ using your web browser
+
+**Note:**
+**Firebase auth is implemented however email validation is disabled. Also, Images are generated using faker JS**
 
 ### Other Scripts
 
