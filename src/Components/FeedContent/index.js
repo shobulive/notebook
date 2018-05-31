@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Comment from './Comment';
 import { connect } from 'react-redux';
 import InputBox from './InputBox';
-import { _returnTimeAgoStamp } from './TimeUtil';
+import { _returnTimeAgoStamp } from './timeUtil';
 import { postComment } from '../../Actions/postData';
 class FeedContent extends React.Component {
   state = { showReplies: false };
