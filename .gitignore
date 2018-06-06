@@ -9,6 +9,9 @@
 # production
 /build
 
+# firebaseCredentials
+src/FirebaseHelper/firebase.js
+
 # misc
 .DS_Store
 .env.local
