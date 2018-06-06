@@ -22,7 +22,9 @@ A minimal facebook clone with firebase plug and play backend and real-time user 
 
 **4. Add your firebase app credentials in ./src/FirebaseHelpers/Firebase under the name `config` variable**
 
-**5. How to launch**
+**5. Enable email auth in firebase and allow read/wirte access as required**
+
+**6. How to launch**
 
 > $ npm run start
 
