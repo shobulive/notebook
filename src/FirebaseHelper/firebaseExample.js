@@ -1,3 +1,5 @@
+// Rename this file all file to firebase.js and add your firebase credientials in the config variable
+// Also enable email auth and read/write permissiong to access dB
 import * as firebase from 'firebase';
 const config = {
   apiKey: 'MY_FIREBASE_API_KEY',

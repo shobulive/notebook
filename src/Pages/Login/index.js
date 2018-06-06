@@ -38,7 +38,11 @@ class Login extends Component {
         <div class="container">
           <div class="row feed-margin">
             <div class="col-lg-1 col-md-1 col-sm-1">
-              <span class="glyphicon glyphicon-ok" />
+              {this.props.message.type !== 'error' ? (
+                <span class="glyphicon glyphicon-ok" />
+              ) : (
+                <span class="glyphicon glyphicon-remove" />
+              )}
             </div>
             <div class="col-lg-11 col-md-11 col-sm-11">
               {this.props.message.message}
@@ -233,4 +237,7 @@ const mapDispatchToProps = dispatch => {
     // searchUsers: text => dispatch(searchUsers(text))
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
